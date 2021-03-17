@@ -1,7 +1,7 @@
 /** Customer for Lunchly */
 
-const db = require("../db");
-const Reservation = require("./reservation");
+const db = require('../db');
+const Reservation = require('./reservation');
 
 /** Customer of the restaurant. */
 
@@ -12,6 +12,11 @@ class Customer {
     this.lastName = lastName;
     this.phone = phone;
     this.notes = notes;
+  }
+
+  /** get customer full name */
+  fullname() {
+    return `${this.firstName} ${this.lastName}`;
   }
 
   /** find all customers. */
@@ -26,7 +31,7 @@ class Customer {
        FROM customers
        ORDER BY last_name, first_name`
     );
-    return results.rows.map(c => new Customer(c));
+    return results.rows.map((c) => new Customer(c));
   }
 
   /** get a customer by ID. */
